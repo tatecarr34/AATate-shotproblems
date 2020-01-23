@@ -1,0 +1,98 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<title> - AACoding04-2</title>
+<style>
+.correct{
+  background:green;
+}
+
+.incorrect{
+  background:red;
+}
+HTML{
+  background:skyBlue;
+}
+h1{
+  background:White;
+}
+</style>
+</head>
+<body translate="no">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<audio id="sad" controls>
+<source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
+</audio>
+<div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span></div>
+<h1>Tate's Hot Math Problems</h1>
+<h1>(radical sign = option/alt v))</h1>
+<ol>
+<li>\( \sqrt[4]{16} + \sqrt[3]{64} \)
+<input data-correct="6" />
+<li>\( \frac{\frac{64}{32}}{\frac{3}{6}} \)
+<input data-correct="4" />
+<li>\( 3^{4+5}\)
+<input data-correct="19683" />
+<li>\(((ab)(ab^2)(a+b^2)(a^2+b))(ba)(2ab) \)
+<input data-correct="2a^6b^5 + 2a^3b^8" />
+<li>\( \sqrt{78}\sqrt{3} (radical is alt/option 'v') \)
+<input data-correct="3√26" />
+<li>\( 4^{^6} \)
+<input data-correct="4096" />
+<li> Gary has 10 math tests to quiz. If Gary grades one test every 11 minutes, how long should it take him to finish grading every one? (answer should look like _h_m)
+<input data-correct="1h50m" />
+<li>Tate and Jonah two of Gary's best friends. What percent do Jonah and Tate represent of Gary's best friends if he also has 4 more/other best friends too? (round to hundreths)
+<input data-correct="33.33" />
+<li>\( 9 - 3\div\frac{1}{3} + 1 \)
+<input data-correct="1" />
+<li>\( \sqrt{4} + \sqrt{2} \)
+<input data-correct="2+√2" />
+</li>
+<ol>
+<p style="font-size:100px" id='smiley'>&#128540;</p>
+<span style='font-size:100px' id='mad'>&#128545;</span>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script id="rendered-js">
+const sad = document.getElementById("sad");
+setInterval(onTimer, 1000);
+function onTimer() {
+  let theTimer = Number($("#theTimer").text());
+  theTimer = theTimer + 1;
+  $("#theTimer").text(theTimer);
+}
+
+$("input").change(onChange);
+
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+  if (correct == response) {
+    let score = Number($("#score").text());
+    score = score + 1;
+    $("#score").text(score);
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+     $("#smiley").show();
+    $("#mad").hide();
+    
+  } else {
+        $("#smiley").hide();
+    $("#mad").show();
+
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+    if (Math.random() > .9) {
+      sad.play();
+    }
+  }
+}
+    </script>
+</body>
+</html>
